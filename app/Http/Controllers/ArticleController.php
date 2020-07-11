@@ -42,8 +42,7 @@ class ArticleController extends Controller
     {
         $this->validate($request, [
             'title' => ['required', 'string', 'max:255'],
-            'body' => ['required', 'string',],
-            'published' => ['required'],
+            'body' => ['required', 'string']
         ]);
 
         request()->user()->articles()->create($request->all());
@@ -103,8 +102,7 @@ class ArticleController extends Controller
             if(request()->user()->hasRole(['superadmin', 'admin']) || request()->user()->isAbleToAndOwns('articles-update', $article)) {
                 $this->validate($request, [
                     'title' => ['required', 'string', 'max:255'],
-                    'body' => ['required', 'string',],
-                    'published' => ['required'],
+                    'body' => ['required', 'string']
                 ]);
     
                 $article->update($request->all());
